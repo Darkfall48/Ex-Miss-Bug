@@ -31,6 +31,7 @@ function save(bug) {
 //? Get - Read
 function get(bugId) {
   const bug = bugs.find((bug) => bug._id === bugId)
+  if (!bug) return Promise.reject('Car not found')
   return Promise.resolve(bug)
 }
 

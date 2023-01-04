@@ -10,23 +10,8 @@ export const bugService = {
 }
 
 function query(filterBy = getDefaultFilter()) {
-  return axios
-    .get(BASE_URL)
-    .then((res) => res.data)
-    .then((bugs) => {
-      if (filterBy.title) {
-        const regex = new RegExp(filterBy.title, 'i')
-        bugs = bugs.filter((bug) => regex.test(bug.title))
-      }
-      if (filterBy.description) {
-        const regex = new RegExp(filterBy.description, 'i')
-        bugs = bugs.filter((bug) => regex.test(bug.description))
-      }
-      if (filterBy.severity) {
-        bugs = bugs.filter((bug) => bug.speed >= filterBy.severity)
-      }
-      return bugs
-    })
+  const queryParams = `?title=${filterBy.title}&minSeverity=${filterBy.minSeverity}&labels=${filterBy.labels}`
+  return axios.get(BASE_URL + queryParams).then((res) => res.data)
 }
 
 function get(bugId) {
@@ -34,19 +19,25 @@ function get(bugId) {
 }
 
 function remove(bugId) {
-  return axios.get(BASE_URL + bugId + '/remove')
+  return axios.delete(BASE_URL + bugId).then((res) => res.data)
 }
 
 function save(bug) {
-  let queryParams = `?title=${bug.title}&description=${bug.description}&severity=${bug.severity}`
-  if (bug._id) queryParams += `&_id=${bug._id}`
-  return axios.get(BASE_URL + 'save' + queryParams).then((res) => res.data)
+  const url = bug._id ? BASE_URL + `${bug._id}` : BASE_URL
+  const method = bug._id ? 'put' : 'post'
+  return axios[method](url, bug).then((res) => res.data)
 }
 
 function getEmptyBug() {
-  return { title: '', description: '', severity: 0 }
+  return {
+    title: '',
+    description: '',
+    severity: null,
+    createdAt: Date.now(),
+    labels: [],
+  }
 }
 
 function getDefaultFilter() {
-  return { title: '', description: '', severity: '' }
+  return { title: '', description: '', severity: '', labels: [] }
 }
