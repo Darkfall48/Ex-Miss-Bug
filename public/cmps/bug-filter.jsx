@@ -51,7 +51,6 @@ export function BugFilter({ onSetFilter, onSetSort, maxPages }) {
   }
 
   function onSubmitFilter(ev) {
-    // update father cmp that filters change on submit
     ev.preventDefault()
     onSetFilter(filterByToEdit)
   }
@@ -64,45 +63,44 @@ export function BugFilter({ onSetFilter, onSetSort, maxPages }) {
 
   return (
     <div>
-      <form className='bug-filter' onSubmit={onSubmitFilter}>
-        <label htmlFor='title'>title:</label>
+      <form className="bug-filter" onSubmit={onSubmitFilter}>
+        <label htmlFor="title">title:</label>
         <input
-          type='text'
-          id='title'
-          name='title'
-          placeholder='By title'
+          type="text"
+          id="title"
+          name="title"
+          placeholder="By title"
           value={filterByToEdit.title}
           onChange={handleChange}
           ref={elInputRef}
         />
-        <label htmlFor='minSeverity'>Min Severity:</label>
+        <label htmlFor="minSeverity">Min Severity:</label>
         <input
-          type='number'
-          id='minSeverity'
-          name='minSeverity'
-          placeholder='By min severity'
+          type="number"
+          id="minSeverity"
+          name="minSeverity"
+          placeholder="By min severity"
           value={filterByToEdit.minSeverity}
           onChange={handleChange}
         />
         <select
-          name='sortByCat'
+          name="sortByCat"
           value={sortByToEdit.sortByCat}
           onChange={handleSortChange}
         >
-          <option value=''>Select Sorting</option>
-          <option value='title'>Title</option>
-          <option value='severity'>Severity</option>
-          <option value='createdAt'>CreatedAt</option>
+          <option value="">Select Sorting</option>
+          <option value="title">Title</option>
+          <option value="severity">Severity</option>
+          <option value="createdAt">CreatedAt</option>
         </select>
-        <label htmlFor='desc'>Descending:</label>
+        <label htmlFor="desc">Descending:</label>
         <input
-          name='desc'
-          id='desc'
-          type='checkbox'
+          name="desc"
+          id="desc"
+          type="checkbox"
           value={sortByToEdit.desc}
           onChange={handleSortChange}
         />
-        {/* <button>Filter bugs!</button> */}
         <Pagination
           currentPage={filterByToEdit.pageIdx}
           handlePageChange={handlePageChange}

@@ -6,6 +6,7 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 
 import { BugFilter } from '../cmps/bug-filter.jsx'
 import { BugList } from '../cmps/bug-list.jsx'
+import { Loader } from '../cmps/loader.jsx'
 
 export function BugIndex() {
   const [isLoading, setIsLoading] = useState(false)
@@ -21,7 +22,6 @@ export function BugIndex() {
   function loadBugs() {
     setIsLoading(true)
     bugService.query(filterBy, sortBy).then((bugsData) => {
-      //   console.log(bugsData)
       setBugs(bugsData.bugs)
       setMaxPages(bugsData.totalPages)
       setIsLoading(false)
@@ -50,14 +50,18 @@ export function BugIndex() {
   }
 
   return (
-    <section className='bug-index full main-layout'>
-      <div className='full main-layout'>
-        <BugFilter maxPages={maxPages} onSetFilter={onSetFilter} onSetSort={onSetSort} />
+    <section className="bug-index full main-layout">
+      <div className="full main-layout">
+        <BugFilter
+          maxPages={maxPages}
+          onSetFilter={onSetFilter}
+          onSetSort={onSetSort}
+        />
 
-        <Link to='/bug/edit'>Add Bug</Link>
+        <Link to="/bug/edit">Add Bug</Link>
 
         {!isLoading && <BugList bugs={bugs} onRemoveBug={onRemoveBug} />}
-        {isLoading && <div>Loading..</div>}
+        {isLoading && <Loader />}
         {!bugs.length && <div>No bugs to show..</div>}
       </div>
     </section>

@@ -13,10 +13,10 @@ app.use(cookieParser())
 
 //* Real routing express
 //? If index.html is not found, create a simple html page.
-// app.get('/', (req, res) => res.send('You are not supposed to see me:('))
+app.get('/', (req, res) => res.send('You are not supposed to see me:('))
 
 //? Query - List/Filtering
-// app.get('/api', (req, res) => res.redirect('/api/bug'))
+app.get('/api', (req, res) => res.redirect('/api/bug'))
 app.get('/api/bug', (req, res) => {
   const { title, labels, minSeverity, pageIdx, pageSize, sortByCat, desc } =
     req.query
