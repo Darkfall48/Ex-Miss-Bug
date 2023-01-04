@@ -3,14 +3,15 @@ const BASE_URL = '/api/bug/'
 export const bugService = {
   query,
   get,
-  remove,
   save,
+  remove,
   getEmptyBug,
   getDefaultFilter,
+  getDefaultSort,
 }
 
-function query(filterBy = getDefaultFilter()) {
-  const queryParams = `?title=${filterBy.title}&minSeverity=${filterBy.minSeverity}&labels=${filterBy.labels}`
+function query(filterBy = getDefaultFilter(), sortBy = getDefaultSort()) {
+  const queryParams = `?title=${filterBy.title}&minSeverity=${filterBy.minSeverity}&labels=${filterBy.labels}&pageIdx=${filterBy.pageIdx}&sortBy=${sortBy.sortByCat}&desc=${sortBy.desc}&pageSize=${filterBy.pageSize}`
   return axios.get(BASE_URL + queryParams).then((res) => res.data)
 }
 
@@ -28,16 +29,19 @@ function save(bug) {
   return axios[method](url, bug).then((res) => res.data)
 }
 
-function getEmptyBug() {
-  return {
-    title: '',
-    description: '',
-    severity: null,
-    createdAt: Date.now(),
-    labels: [],
-  }
+function getEmptyBug(
+  title = '',
+  description = '',
+  severity = '',
+  createdAt = Date.now(),
+  labels = []
+) {
+  return { title, description, severity, createdAt, labels }
 }
 
 function getDefaultFilter() {
-  return { title: '', description: '', severity: '', labels: [] }
+  return { title: '', minSeverity: '', pageIdx: 0, pageSize: 4, labels: [] }
+}
+function getDefaultSort() {
+  return { sortByCat: '', desc: 1 }
 }

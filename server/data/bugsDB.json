@@ -1,22 +1,160 @@
 [
   {
-    "_id": "izTHs"
+    "_id": "def456",
+    "title": "Error when loading page",
+    "description": "page fails to load with error message",
+    "severity": 2,
+    "createdAt": 1542101359454,
+    "labels": [
+      "high",
+      "need-CR"
+    ]
   },
   {
-    "_id": "sHdaM"
+    "_id": "mno112",
+    "title": "Missing button on account page",
+    "description": "button to delete account is missing",
+    "severity": 2,
+    "createdAt": 1542087159454,
+    "labels": [
+      "high",
+      "ux"
+    ]
   },
   {
-    "_id": "bfK9D"
+    "_id": "pqr123",
+    "title": "Cannot delete product",
+    "description": "error message when trying to delete product from inventory",
+    "severity": 3,
+    "createdAt": 1542117354454,
+    "labels": [
+      "critical",
+      "database",
+      "dev-branch"
+    ]
   },
   {
-    "_id": "FmHVW"
+    "_id": "stu456",
+    "title": "Error when adding to cart",
+    "description": "item does not get added to cart when 'Add to Cart' button is clicked",
+    "severity": 2,
+    "createdAt": 1542120359354,
+    "labels": [
+      "high",
+      "shopping-cart",
+      "dev-branch"
+    ]
   },
   {
-    "_id": "LQ0Jm"
+    "_id": "vwx789",
+    "title": "Broken image link on homepage",
+    "description": "image on homepage is not displaying due to broken link",
+    "severity": 1,
+    "createdAt": 1542097309454,
+    "labels": [
+      "low",
+      "image",
+      "content"
+    ]
   },
   {
-    "title": "ko",
+    "_id": "yza101",
+    "title": "Inconsistent font sizes on product pages",
+    "description": "font sizes are not consistent on product pages",
+    "severity": 2,
+    "createdAt": 1542010359354,
+    "labels": [
+      "high",
+      "font",
+      "ux"
+    ]
+  },
+  {
+    "_id": "bcd112",
+    "title": "Incorrect price displayed on checkout page",
+    "description": "incorrect price is displayed on checkout page",
+    "severity": 3,
+    "createdAt": 1542087159454,
+    "labels": [
+      "critical",
+      "checkout",
+      "dev-branch"
+    ]
+  },
+  {
+    "_id": "efg123",
+    "title": "Cannot log in",
+    "description": "login button does not work and returns an error message",
+    "severity": 3,
+    "createdAt": 1542197359454,
+    "labels": [
+      "critical",
+      "login",
+      "dev-branch"
+    ]
+  },
+  {
+    "_id": "hij456",
+    "title": "Form not submitting correctly",
+    "description": "form submission results in error message",
+    "severity": 2,
+    "createdAt": 1542100159454,
+    "labels": [
+      "high",
+      "form",
+      "dev-branch"
+    ]
+  },
+  {
+    "_id": "klm789",
+    "title": "Spelling error on homepage",
+    "description": "spelling error on homepage needs to be corrected",
+    "severity": 1,
+    "createdAt": 1542097859454,
+    "labels": [
+      "low",
+      "spelling",
+      "content"
+    ]
+  },
+  {
+    "_id": "nop101",
+    "title": "Inconsistent spacing on blog post pages",
+    "description": "spacing between elements is not consistent on blog post pages",
+    "severity": 2,
+    "createdAt": 1542090159454,
+    "labels": [
+      "high",
+      "spacing",
+      "ux"
+    ]
+  },
+  {
+    "_id": "qrs112",
+    "title": "Button not working on contact page",
+    "description": "button to send message on contact page is not working",
+    "severity": 3,
+    "createdAt": 1542088329454,
+    "labels": [
+      "critical",
+      "button",
+      "dev-branch"
+    ]
+  },
+  {
+    "title": "frfr",
+    "description": "iji",
     "severity": 5,
-    "_id": "PbBVV"
+    "createdAt": 1672872350023,
+    "labels": [],
+    "_id": "PPOO9"
+  },
+  {
+    "title": "frfrf",
+    "description": "ji",
+    "severity": "",
+    "createdAt": 1672872387697,
+    "labels": [],
+    "_id": "zocwG"
   }
 ]

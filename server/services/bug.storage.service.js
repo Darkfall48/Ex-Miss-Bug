@@ -10,8 +10,47 @@ module.exports = {
 }
 
 //? Query - List/Filtering
-function query() {
-  return Promise.resolve(bugs)
+function query(filterBy, sortBy) {
+  let filteredBugs = bugs
+  // Filtering
+  if (filterBy.title) {
+    const regex = new RegExp(filterBy.title, 'i')
+    filteredBugs = filteredBugs.filter((bug) => regex.test(bug.title))
+  }
+  if (filterBy.labels) {
+    const labels = filterBy.labels.split(',')
+    filteredBugs = filteredBugs.filter((bug) =>
+      labels.every((i) => bug.labels.includes(i))
+    )
+  }
+  if (filterBy.minSeverity) {
+    filteredBugs = filteredBugs.filter(
+      (bug) => bug.severity >= +filterBy.minSeverity
+    )
+  }
+
+  // Sorting
+  if (sortBy) {
+    if (sortBy.sortByCat === 'createdAt' || sortBy.sortByCat === 'severity') {
+      filteredBugs.sort(
+        (b1, b2) => (b1[sortBy.sortByCat] - b2[sortBy.sortByCat]) * sortBy.desc
+      )
+    }
+    if (filterBy.sortBy === 'title') {
+      filteredBugs.sort(
+        (b1, b2) => b1.title.localeCompare(b2.title) * sortBy.desc
+      )
+    }
+  }
+
+  // Paging
+  const totalPages = Math.ceil(filteredBugs.length / +filterBy.pageSize)
+  if (filterBy.pageIdx !== undefined) {
+    const startIdx = filterBy.pageIdx * +filterBy.pageSize
+    filteredBugs = filteredBugs.slice(startIdx, +filterBy.pageSize + startIdx)
+  }
+
+  return Promise.resolve({ totalPages, bugs: filteredBugs })
 }
 
 //? Save - Save/Edit

@@ -13,18 +13,31 @@ app.use(cookieParser())
 
 //* Real routing express
 //? If index.html is not found, create a simple html page.
-app.get('/', (req, res) => res.send('You are not supposed to see me:('))
+// app.get('/', (req, res) => res.send('You are not supposed to see me:('))
 
 //? Query - List/Filtering
-app.get('/api', (req, res) => res.redirect('/api/bug'))
+// app.get('/api', (req, res) => res.redirect('/api/bug'))
 app.get('/api/bug', (req, res) => {
+  const { title, labels, minSeverity, pageIdx, pageSize, sortByCat, desc } =
+    req.query
+  const sortBy = {
+    sortByCat,
+    desc,
+  }
+  const filterBy = {
+    title,
+    minSeverity,
+    labels,
+    pageIdx,
+    pageSize,
+  }
   bugStorageService
-    .query()
+    .query(filterBy, sortBy)
     .then((bugs) => res.send(bugs))
     .catch((err) => res.status(404).send(err.message))
 })
 
-//? Save - Save/Edit
+//? Create - Save
 app.post('/api/bug/', (req, res) => {
   const bug = req.body
   bugStorageService
